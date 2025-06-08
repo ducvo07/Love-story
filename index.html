@@ -57,6 +57,26 @@
       bottom: 20px;
       right: 20px;
     }
+    .heart {
+    position: fixed;
+    top: -10px;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: fall 6s linear infinite;
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) translateX(-50vw) rotate(360deg);
+      opacity: 0;
+    }
+  }
   </style>
 </head>
 <body>
@@ -143,6 +163,17 @@
     audio.muted = false;
     audio.play();
   });
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = ["💖", "💕", "💘", "💗", "❤️"][Math.floor(Math.random() * 5)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+    setInterval(createHeart, 300);
 </script>
 
   
