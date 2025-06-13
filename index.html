@@ -96,6 +96,7 @@
     <h1>Our Love Story</h1>
     <p><strong><a href ="https://www.facebook.com/navunutn" target ="_blank" rel="noopener noreferrer">Võ Đức</a> 💕 <a href = "https://www.facebook.com/quynhnhu.mai.9674" target ="_blank" rel="noopener noreferrer"> Quỳnh Như</a></a></strong></p>
     <p>Since 24.08.2024 💖</p>
+    <p>👁️ Lượt xem: <span id="view-count">Đang tải...</span></p>
   </header>
 
   <section class="timeline">
@@ -186,8 +187,38 @@
     setTimeout(() => heart.remove(), 6000);
   }
     setInterval(createHeart, 300);
-</script>
 
-  
+    
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<!-- Firebase config -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC-SGDvdSCVOW6r-WMx91-taC-H3m3EP_k",
+      authDomain: "our-love-4bb92.firebaseapp.com",
+      projectId: "our-love-4bb92",
+      storageBucket: "our-love-4bb92.appspot.com",
+      messagingSenderId: "897967876261",
+      appId: "1:897967876261:web:d97229dc2884d4dbaa236c",
+      measurementId: "G-V4P3H3WRYB",
+      databaseURL: "https://our-love-4bb92-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+
+    // Khởi tạo Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const viewRef = db.ref("page_views/love_story");
+
+    // Tăng view mỗi lần tải trang
+    viewRef.transaction(function(currentValue) {
+      return (currentValue || 0) + 1;
+    });
+
+    // Hiển thị số lượt xem
+    viewRef.on("value", function(snapshot) {
+      document.getElementById("view-count").innerText = snapshot.val();
+    });
+  </script>
 </body>
 </html>
