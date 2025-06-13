@@ -178,10 +178,12 @@
       <p>Sau 3 tháng yêu nhau tụi mình đã có với nhau 1 bữa tiệc kỷ niệm với nhau, nhớ mãi ngày này mặc áo xong tới quán QN mới chê =)) (không chê ở nhà trước để thay mà đến quán mới chê)</p>
     </div>
     <div class="event">
-       <p>Những ngày tháng yêu nhau chúng tôi đã thử rất nhiều món ăn ở ĐN chụp hình với nhau rất nhiều bla bla</p>
+      <p>Những ngày tháng yêu nhau chúng tôi đã thử rất nhiều món ăn ở ĐN chụp hình với nhau rất nhiều bla bla</p>
+      <div class="gallery">
         <img src="./img/nine-date.jpg" class="clickable" style="margin-top:10px; border-radius:8px; max-width:25%; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <img src="./img/ten-date.jpg" class="clickable" style="margin-top:10px; border-radius:8px; max-width:28%; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-    </div>
+        <img src="./img/ten-date.jpg" class="clickable" style="margin-top:10px; border-radius:8px; max-width:28%; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      </div>
+      </div>
      <div class="event">
        <p>Hiện tại tụi mình đang tiếp tục tình yêu của tụi mình, phát triển tình yêu của bọn mình hơn nữa, to be continue</p>
     </div>
@@ -212,36 +214,6 @@
     setTimeout(() => heart.remove(), 6000);
   }
     setInterval(createHeart, 300);
-</script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-<!-- Firebase config -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyC-SGDvdSCVOW6r-WMx91-taC-H3m3EP_k",
-      authDomain: "our-love-4bb92.firebaseapp.com",
-      projectId: "our-love-4bb92",
-      storageBucket: "our-love-4bb92.appspot.com",
-      messagingSenderId: "897967876261",
-      appId: "1:897967876261:web:d97229dc2884d4dbaa236c",
-      measurementId: "G-V4P3H3WRYB",
-      databaseURL: "https://our-love-4bb92-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
-
-    // Khởi tạo Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const viewRef = db.ref("page_views/love_story");
-
-    // Tăng view mỗi lần tải trang
-    viewRef.transaction(function(currentValue) {
-      return (currentValue || 0) + 1;
-    });
-
-    // Hiển thị số lượt xem
-    viewRef.on("value", function(snapshot) {
-      document.getElementById("view-count").innerText = snapshot.val();
-    });
   </script>
   <script>
   function startStory() {
@@ -272,6 +244,16 @@
   // Đóng popup khi click nền
   document.getElementById("image-modal").addEventListener('click', function () {
     this.style.display = "none";
+  });
+</script>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  ScrollReveal().reveal('.event', {
+    origin: 'bottom',
+    distance: '30px',
+    duration: 800,
+    easing: 'ease-in-out',
+    interval: 150
   });
 </script>
 
