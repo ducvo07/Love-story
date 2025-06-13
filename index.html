@@ -92,14 +92,36 @@
   </style>
 </head>
 <body>
+  <div id="intro-screen" style="
+  position: fixed; 
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ffd6dc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  text-align: center;
+">
+  <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #d6336c;">Our Love Story 💖</h2>
+  <p style="font-size: 1.1rem; color: #333;">Một câu chuyện nhỏ của Võ Đức và Quỳnh Như</p>
+  <button onclick="startStory()" style="
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;">
+    Bắt đầu câu chuyện 🎶
+  </button>
+</div>
   <header>
     <h1>Our Love Story</h1>
     <p><strong><a href ="https://www.facebook.com/navunutn" target ="_blank" rel="noopener noreferrer">Võ Đức</a> 💕 <a href = "https://www.facebook.com/quynhnhu.mai.9674" target ="_blank" rel="noopener noreferrer"> Quỳnh Như</a></a></strong></p>
     <p>Since 24.08.2024 💖</p>
-    <p>👁️Lượt xem:<span id="view-count"></span></p>
-    <div id="intro">
-    <p>Bấm vào màn hình để bắt đầu câu chuyện🎶</p>
-  </div>
   </header>
   
   <section class="timeline">
@@ -169,10 +191,9 @@
     <p>Designed with ❤️ for our forever story</p>
   </footer>
 
-  <audio id="bg-music" autoplay loop muted>
-  <source src="./Sound/mtp.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
+  <audio id="bg-music" loop>
+    <source src="./Sound/mtp.mp3" type="audio/mp3">
+  </audio>
 
 <script>
   const audio = document.getElementById("bg-music");
@@ -191,8 +212,6 @@
     setTimeout(() => heart.remove(), 6000);
   }
     setInterval(createHeart, 300);
-
-    
 </script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
@@ -224,5 +243,17 @@
       document.getElementById("view-count").innerText = snapshot.val();
     });
   </script>
+  <script>
+  function startStory() {
+    const intro = document.getElementById("intro-screen");
+    const music = document.getElementById("bg-music");
+
+    intro.style.display = "none";
+    music.play().catch(e => {
+      alert("Trình duyệt đã chặn phát nhạc. Hãy bấm lại!");
+    });
+  }
+  </script>
+
 </body>
 </html>
